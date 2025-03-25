@@ -18,9 +18,9 @@ public class Car : MonoBehaviour
         currentSpeed = manager.i.speed * speed;
         
         if (!AboutToCollide())
-            transform.position += (transform.forward * currentSpeed) * Time.deltaTime;
+            transform.position += (transform.forward * -currentSpeed) * Time.deltaTime;
         else //slow car if about to collide
-            transform.position += (transform.forward * (currentSpeed - 2)) * Time.deltaTime;
+            transform.position += (transform.forward * (-currentSpeed - 2)) * Time.deltaTime;
 
         if (transform.position.z > 25)
         {

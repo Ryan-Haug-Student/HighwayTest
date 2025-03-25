@@ -16,6 +16,7 @@ public class manager : MonoBehaviour
 
     [Header("Logic")]
     public bool canSpawn;
+    public GameObject[] cars;
 
     private void Start()
     {
@@ -23,9 +24,9 @@ public class manager : MonoBehaviour
             i = this;
 
         lanes = new Vector3[] 
-        { new Vector3(-1.1f, .7f, -24),    //left lane
-          new Vector3(0, .75f, -24),       //right lane
-          new Vector3(1.1f, 0.75f, -24)    //right lane 
+        { new Vector3(-1.1f, .5f, -24),    //left lane
+          new Vector3(0, .5f, -24),       //right lane
+          new Vector3(1.1f, 0.5f, -24)    //right lane 
         }; 
     }
 
@@ -48,7 +49,7 @@ public class manager : MonoBehaviour
             int spawnPos = Random.Range(0, 3);
 
             if (spawnPos != lastSpawnPos)
-            { Instantiate(car, lanes[spawnPos], Quaternion.identity); lastSpawnPos = spawnPos; }
+            { Instantiate(cars[Random.Range(0, 4)], lanes[spawnPos], Quaternion.Euler(0, 180, 0)); lastSpawnPos = spawnPos; }
             else
                 break;
         }
