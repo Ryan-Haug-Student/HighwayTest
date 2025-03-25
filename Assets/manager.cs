@@ -8,9 +8,10 @@ public class manager : MonoBehaviour
     [Header("Stats")]
     public float speed;
     public float timeBetween; //frequency
+    public float timeScale;
 
     [SerializeField] GameObject car;
-
+    public int totalCars = 0;
     private Vector3[] lanes;
 
     [Header("Logic")]
@@ -32,20 +33,22 @@ public class manager : MonoBehaviour
     {
         if (canSpawn)
             StartCoroutine("SpawnCars");
+
+        Time.timeScale = timeScale;
     }
 
     private IEnumerator SpawnCars()
     {
         canSpawn = false;
         int quantity = Random.Range(1, 3);
+        int lastSpawnPos = -1; //assigned so first run isnt null and always used
 
         for (int i = 0; i < quantity; i++)
         {
             int spawnPos = Random.Range(0, 3);
-            int lastSpawnPos = 99; //assigned so first run isnt null and always used
 
             if (spawnPos != lastSpawnPos)
-            { Instantiate(car, lanes[spawnPos], Quaternion.identity); }
+            { Instantiate(car, lanes[spawnPos], Quaternion.identity); lastSpawnPos = spawnPos; }
             else
                 break;
         }

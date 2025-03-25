@@ -10,6 +10,7 @@ public class Car : MonoBehaviour
     private void Start()
     {
         speed = Random.Range(0.6f, .7f);
+        manager.i.totalCars++;
     }
 
     private void Update()
@@ -24,6 +25,7 @@ public class Car : MonoBehaviour
         if (transform.position.z > 25)
         {
             Destroy(gameObject);
+            manager.i.totalCars--;
         }
     }
 
